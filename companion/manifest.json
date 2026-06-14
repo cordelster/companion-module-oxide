@@ -1,0 +1,17 @@
+{
+  "id": "oxide",
+  "name": "OXIDE Tape Workflow",
+  "shortname": "OXIDE",
+  "description": "Control the OXIDE tape digitization workflow engine — HyperDeck recording, Sony VTR transport, and automation.",
+  "version": "1.0.0",
+  "license": "SEE LICENSE IN ../../LICENSE",
+  "manufacturer": "Corey De Lasaux",
+  "products": ["OXIDE"],
+  "keywords": ["oxide", "hyperdeck", "betamax", "tape", "digitization", "vtr", "sony"],
+  "runtime": {
+    "type": "nodejs",
+    "api": "nodejs-ipc",
+    "apiVersion": "1.2.0",
+    "entrypoint": "./main.js"
+  }
+}

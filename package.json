@@ -1,0 +1,20 @@
+{
+  "name": "companion-module-oxide",
+  "version": "0.0.7",
+  "description": "Bitfocus Companion module for OXIDE tape digitization workflow",
+  "type": "module",
+  "main": "main.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "node main.js"
+  },
+  "keywords": ["companion-module", "oxide", "hyperdeck", "tape", "vtr", "digitization"],
+  "author": "Corey De Lasaux <cordelster@gmail.com>",
+  "manufacturer": "Corey De Lasaux",
+  "license": "SEE LICENSE IN ../LICENSE",
+  "dependencies": {
+    "@companion-module/base": "^1.8.0"
+  }
+}
