@@ -1,0 +1,24 @@
+name: Bootstrap yarn.lock
+
+on:
+  workflow_dispatch:
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+      - run: corepack enable
+      - run: yarn install
+      - name: Commit yarn.lock
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add yarn.lock
+          git commit -m "Add yarn.lock" && git push || echo "Nothing to commit"
