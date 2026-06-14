@@ -5,7 +5,7 @@
   "name": "OXIDE Tape Workflow",
   "shortname": "OXIDE",
   "description": "Control the OXIDE tape digitization workflow engine — HyperDeck recording, Sony VTR transport, and automation.",
-  "version": "1.0.0",
+  "version": "0.0.7",
   "license": "SEE LICENSE IN ../../LICENSE",
   "repository": "git+https://github.com/cordelster/companion-module-oxide.git",
   "bugs": "https://github.com/cordelster/companion-module-oxide/issues",
