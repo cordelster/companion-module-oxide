@@ -353,12 +353,23 @@ class OxideInstance extends InstanceBase {
 
       vtr_error: {
         type: 'boolean',
-        name: 'VTR: Hardware Error',
+        name: 'VTR: Hardware Error (live serial)',
         defaultStyle: { bgcolor: combineRgb(255, 0, 100), color: combineRgb(255, 255, 255) },
         options: [
           { type: 'textinput', id: 'name', label: 'VTR name', default: '' },
         ],
         callback: ({ options }) => this._vtrField(options.name, 'state') === 'ERROR',
+      },
+
+      deck_vtr_error: {
+        type: 'boolean',
+        name: 'Deck: VTR Error (automation monitor)',
+        description: 'True when the automation monitor reports VTR in ERROR state (e.g. E06 fault during a run). Cleared when no run is active.',
+        defaultStyle: { bgcolor: combineRgb(255, 0, 100), color: combineRgb(255, 255, 255) },
+        options: [
+          { type: 'textinput', id: 'ip', label: 'Deck IP', default: '' },
+        ],
+        callback: ({ options }) => this._deckField(options.ip, 'vtr_state') === 'ERROR',
       },
     })
   }
@@ -379,10 +390,12 @@ class OxideInstance extends InstanceBase {
     for (const deck of decks) {
       const key = this._deckKey(deck)
       defs.push(
-        { variableId: `${key}_status`,   name: `${deck.label || deck.ip} Status` },
-        { variableId: `${key}_timecode`, name: `${deck.label || deck.ip} Timecode` },
-        { variableId: `${key}_clip`,     name: `${deck.label || deck.ip} Clip` },
-        { variableId: `${key}_nas`,      name: `${deck.label || deck.ip} NAS Status` },
+        { variableId: `${key}_status`,      name: `${deck.label || deck.ip} Status` },
+        { variableId: `${key}_timecode`,    name: `${deck.label || deck.ip} Timecode` },
+        { variableId: `${key}_clip`,        name: `${deck.label || deck.ip} Clip` },
+        { variableId: `${key}_nas`,         name: `${deck.label || deck.ip} NAS Status` },
+        { variableId: `${key}_vtr_state`,   name: `${deck.label || deck.ip} VTR State` },
+        { variableId: `${key}_vtr_timecode`,name: `${deck.label || deck.ip} VTR Timecode` },
       )
     }
 
@@ -399,10 +412,12 @@ class OxideInstance extends InstanceBase {
 
     for (const deck of this.decks) {
       const key = this._deckKey(deck)
-      vals[`${key}_status`]   = deck.status    ?? ''
-      vals[`${key}_timecode`] = deck.timecode  ?? ''
-      vals[`${key}_clip`]     = deck.clip      ?? ''
-      vals[`${key}_nas`]      = deck.nas_status ?? ''
+      vals[`${key}_status`]       = deck.status       ?? ''
+      vals[`${key}_timecode`]     = deck.timecode      ?? ''
+      vals[`${key}_clip`]         = deck.clip          ?? ''
+      vals[`${key}_nas`]          = deck.nas_status    ?? ''
+      vals[`${key}_vtr_state`]    = deck.vtr_state     ?? ''
+      vals[`${key}_vtr_timecode`] = deck.vtr_timecode  ?? ''
     }
 
     for (const vtr of this.vtrs) {

@@ -1,6 +1,6 @@
 {
   "name": "companion-module-oxide",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Bitfocus Companion module for OXIDE tape digitization workflow",
   "type": "module",
   "main": "main.js",
